@@ -10,10 +10,10 @@ import { signup, signin } from '../controllers/authController.js';
 import { protect } from '../controllers/authController.js';
 
 const router = express.Router();
-router.post('/signup', signup);
-router.post('/signin', signin);
+router.post('/register', signup);
+router.post('/login', signin);
 
-router.route('/').get(getAllUsers).post(createUser);
+router.route('/').get(protect, getAllUsers).post(createUser);
 
 router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);
 

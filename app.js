@@ -4,9 +4,14 @@ import cors from 'cors';
 import AppError from './utils/appError.js';
 import globalErrorHandler from './controllers/errorController.js';
 import cookieParser from 'cookie-parser';
+import ExpressMongoSanitize from 'express-mongo-sanitize';
+import xss from 'xss-clean';
 
 const app = express();
 app.use(express.json());
+app.use(ExpressMongoSanitize());
+app.use(xss());
+
 app.use(cookieParser());
 
 app.use(
